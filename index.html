@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake news detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://as1.ftcdn.net/v2/jpg/03/36/30/40/1000_F_336304058_lIkAhZbkWlUSQ6W0DY80RWwjjGi7NYNy.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: #fff; /* Couleur du texte */
+        }
+        header {
+            background-color: rgba(51, 51, 51, 0.8); /* Fond semi-transparent */
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            padding: 20px;
+        }
+        .form-container {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9); /* Fond semi-transparent */
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            color: #333; /* Couleur du texte à l'intérieur du formulaire */
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            text-align: center;
+            font-size: 24px;
+            margin-top: 20px;
+        }
+        .vraie {
+            color: green;
+        }
+        .fausse {
+            color: red;
+        }
+        footer {
+            background-color: rgba(51, 51, 51, 0.8); /* Fond semi-transparent */
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Fake news detection</h1>
+    </header>
+    <div class="container">
+        <div class="form-container">
+            <form id="verificationForm" onsubmit="submitForm(event)">
+                <label for="saisie">Entrer le titre de l'article :</label><br>
+                <input type="text" id="saisie" name="texte"><br><br>
+                <button type="submit">Verifier</button>
+            </form>
+            <div class="result" id="resultContainer" style="display: none;">
+                <p id="resultText"></p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Fake News Detection - Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        function submitForm(event) {
+            event.preventDefault(); // Empêche le formulaire de soumettre les données normalement
+
+            // Récupère le texte entré dans le formulaire
+            var texte = document.getElementById("saisie").value;
+
+            // Simule le traitement et l'affichage du résultat
+            var isValid = Math.random() < 0.5; // Simule un résultat aléatoire (50% de chance d'être vrai ou faux)
+            var resultText = document.getElementById("resultText");
+
+            if (isValid) {
+                resultText.textContent = "L'article est considéré comme une information valide.";
+                resultText.className = "vraie";
+            } else {
+                resultText.textContent = "L'article est considéré comme une information fausse.";
+                resultText.className = "fausse";
+            }
+
+            // Affiche le conteneur du résultat
+            var resultContainer = document.getElementById("resultContainer");
+            resultContainer.style.display = "block";
+        }
+    </script>
+</body>
+</html>
